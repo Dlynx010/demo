@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Journey Surprise Prototype</title>
+<style>
+body{margin:0;font-family:Arial;background:#000;color:#fff;overflow:hidden}
+#count,#start,#journey{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#start,#journey{display:none}
+button{padding:16px 30px;font-size:22px}
+.petals{position:fixed;inset:0;pointer-events:none;display:none}
+.p{position:absolute;top:-20px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.sec{max-width:700px;margin:120px auto;padding:20px;background:#ffffff18;border-radius:12px;backdrop-filter:blur(4px)}
+</style></head><body>
+<div id=count><h1 style="font-size:70px">00 : 00 : 00 : 00</h1><p>Countdown Complete</p></div>
+<div id=start><button onclick="begin()">Start Journey</button></div>
+<div class=petals id=petals></div><div id='stars'></div>
+<div id=journey style="display:none;position:static;overflow:auto;height:100vh">
+<div id='intro' style='display:none;height:100vh;align-items:center;justify-content:center;flex-direction:column'><img src='first-photo.jpg' style='max-width:90%;max-height:80vh;border-radius:20px;animation:zoom 8s linear forwards'><p>Replace first-photo.jpg later.</p></div><div class="sec"><h2>💌 Prem Patrs</h2>
+<div style='display:flex;align-items:center;gap:20px;margin:25px 0'><img src='photo1.png' style='width:180px;border-radius:15px'><div style='flex:1;background:linear-gradient(135deg,#ff5f8f,#ff8fb1);padding:18px;border-radius:15px;box-shadow:0 0 20px rgba(255,105,150,.35)'><h3 style='color:white'>Miss DON</h3><p>Write the first person's message here.</p></div></div>
+<div style='display:flex;align-items:center;gap:20px;margin:25px 0'><div style='flex:1;background:#ffffff18;padding:18px;border-radius:15px'><h3>Apki Ladli</h3><p>To my Girll 😎
+
+You know you're kind of stuck with me now—no refunds, no exchanges 😏👩‍🎤Thank you for being the person...(✿♥‿♥)who can make me laugh until my stomach hurts and somehow make everything feel okay with just one conversation. Life keeps changing, but one thing I never want to change is us. You're my favorite memory my biggest comfort and one of the best surprises life has ever given me. So here's to more inside jokes random chaos endless laughter and a friendship that only grows stronger with time. Love you...😪😘 even when you're annoying. :)🤓
+And madam jab bhi bulaun milne zaroor aa jana! 🔪😌
+</p></div><video controls style='width:220px;border-radius:15px'><source src='video1.mp4'></video></div>
+<div style='display:flex;align-items:center;gap:20px;margin:25px 0'><img src='photo2.png' style='width:180px;border-radius:15px'><div style='flex:1;background:#ffffff18;padding:18px;border-radius:15px'><h3>Message 3</h3><p>Kanishu ur the best thing that has ever happened to me,idk why u choose to downgrade ur aura  with ur deadbeat ahh boyfriend when I'm so much more suited for u, I love u so much and I wish u never left,yk I even told my fav uncle that 'my bsf' is leaving,and cried to him cause of u...I. Just hope u do amazing in life🎀❤️ happy birthday sweetie❤️❤️❤️❤️🌸🌸🌸🎀🎀🎀🎀🎀</p></div></div>
+<div style='display:flex;align-items:center;gap:20px;margin:25px 0'><div style='flex:1;background:#ffffff18;padding:18px;border-radius:15px'><h3>Message 4</h3><p>Write the fourth person's message here.</p></div><video controls style='width:220px;border-radius:15px'><source src='video2.mp4'></video></div>
+<div style='display:flex;align-items:center;gap:20px;margin:25px 0'><img src='photo3.png' style='width:180px;border-radius:15px'><div style='flex:1;background:#ffffff18;padding:18px;border-radius:15px'><h3>Message 5</h3><p>Write the fifth person's message here.</p></div></div></div><div class=sec><h2>💌 Ending</h2><p>Your final message.</p></div>
+<audio id=cry src="dragon-studio-baby-crying-463213.mp3"></audio>
+<audio id=music src="O Meri Laila - Laila Majnu (2018) - EASY Piano Tutorial - Notes+Sheet+MIDI - Philic Piano (128k).mp3" loop></audio>
+</div>
+<script>
+setTimeout(()=>{count.style.opacity=0;setTimeout(()=>{count.style.display='none';start.style.display='flex'},800)},1000);
+for(let i=0;i<30;i++){let d=document.createElement('div');d.className='p';d.textContent='🌸';d.style.left=Math.random()*100+'vw';d.style.animationDuration=(5+Math.random()*5)+'s';d.style.animationDelay=(-Math.random()*5)+'s';petals.appendChild(d);}
+function begin(){
+ start.style.display='none';
+ document.body.style.background='#000';
+ music.volume=0;
+ music.play().then(()=>{music.pause();music.currentTime=0;}).catch(()=>{});
+ setTimeout(()=>{
+   journey.style.display='block';intro.style.display='flex';
+   petals.style.display='none';document.querySelectorAll('.star').forEach(s=>s.style.opacity=0);
+   cry.play().catch(()=>{});setTimeout(()=>{[...document.querySelectorAll('.star')].forEach((s,i)=>setTimeout(()=>{s.style.transition='opacity 1s';s.style.opacity=1;},i*20));},500);
+   setTimeout(()=>{
+music.currentTime=0;
+music.play().then(()=>{
+ let v=0; music.volume=0;
+ let f=setInterval(()=>{v+=0.05; music.volume=Math.min(v,1); if(v>=1) clearInterval(f);},200);
+}).catch(()=>{});
+petals.style.display='block';intro.style.display='none';
+window.scrollTo({top:0});
+},5000);
+   let y=0;setInterval(()=>window.scrollBy({top:1,behavior:'smooth'}),35);
+ },2000);
+}
+</script>
+<style>@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.08)}}.star{position:fixed;width:2px;height:2px;background:white;border-radius:50%;animation:tw 2s infinite alternate}@keyframes tw{to{opacity:.2}}</style>
+<script>
+for(let i=0;i<120;i++){let s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';document.body.appendChild(s);}
+</script>
+<script>
+const bgMusic = document.getElementById("music");
+
+document.querySelectorAll("video").forEach(video => {
+
+    video.addEventListener("play", () => {
+        bgMusic.pause();
+    });
+
+    video.addEventListener("pause", () => {
+        bgMusic.play().catch(() => {});
+    });
+
+    video.addEventListener("ended", () => {
+        bgMusic.play().catch(() => {});
+    });
+
+});
+</script>
+</body></html>
